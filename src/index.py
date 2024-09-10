@@ -1,16 +1,16 @@
 import os
 import sys
 from dotenv import load_dotenv
-from langchain_openai import OpenAIEmbeddings
+#from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Qdrant
 from qdrant_client.http import models
 from qdrant_client import QdrantClient
 from custom_logging import logger
 from custom_exception import CustomException
-
+from langchain_huggingface import HuggingFaceEmbeddings
 load_dotenv()
 
-def store_documents_to_qdrant(texts: list):
+def store_documents_to_qdrant(texts: list, embeddings_model):
     """
     Store documents into Qdrant vector store.
 
@@ -23,9 +23,15 @@ def store_documents_to_qdrant(texts: list):
     try:
         qdrant_end = os.getenv('QDRANT_END')
         qdrant_api_key = os.getenv('QDRANT_API_KEY')
-        openai_api_key = os.getenv('OPENAI_API_KEY')
+        #openai_api_key = os.getenv('OPENAI_API_KEY')
 
-        embeddings_model = OpenAIEmbeddings(model='text-embedding-ada-002', openai_api_key=openai_api_key)
+        #embeddings_model = OpenAIEmbeddings(model='text-embedding-ada-002', openai_api_key=openai_api_key)
+
+        # model_name = "sentence-transformers/all-mpnet-base-v2"
+        # model_kwargs = {'device': 'cpu'}
+        # encode_kwargs = {'normalize_embeddings': False}
+
+        # embeddings_model = HuggingFaceEmbeddings(model_name=model_name,model_kwargs=model_kwargs,encode_kwargs=encode_kwargs)
 
         qdrant = Qdrant.from_documents(
             texts,

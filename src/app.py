@@ -1,5 +1,5 @@
 import sys
-sys.path.append("D:/LLMOps")
+sys.path.append("D:/LLMOps projects/LLMOps")
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from src.main import retriever

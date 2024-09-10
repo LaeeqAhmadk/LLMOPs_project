@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append("D:/LLMOps")
+sys.path.append("D:/LLMOps projects/LLMOps")
 from src.preprocess import load_documents, split_documents
 from src.index import store_documents_to_qdrant
 from langchain_openai import OpenAIEmbeddings
@@ -25,7 +25,7 @@ def retriever(question:str):
     # Retrieve
     question = "What are the documents uploaded in the database?"
     answer = retrieve_answer_from_docs(question)
-    
+     
     return answer
 
 # if __name__ == "__main__":
